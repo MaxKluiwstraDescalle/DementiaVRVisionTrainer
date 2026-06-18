@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Ball Tracking Game.sln"
+    "dotnet.defaultSolution": "Ball Tracking Game - Copy.sln"
 }

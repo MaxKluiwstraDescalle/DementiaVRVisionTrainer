@@ -23,6 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MediumGame.unity
     guid: 3d877daa557619740b58093bc1833339
+  - enabled: 1
+    path: Assets/Scenes/GreenGame.unity
+    guid: 54e1711a93f36d6479a7a9bb29b038dd
+  - enabled: 1
+    path: Assets/Scenes/BlueGame.unity
+    guid: add2094415e9620468e32f0de027ca14
+  - enabled: 1
+    path: Assets/Scenes/ColorCycleGame.unity
+    guid: 66ee87f8eca696d44926fad4377926ff
+  - enabled: 1
+    path: Assets/Scenes/RedGame.unity
+    guid: f581d67c10f7dbf429dc557c79c96b4b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4947ad656ce739e4ea6db5e75a4b448a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 56ede57a97450e6489383513b2cbec3a, type: 2}
