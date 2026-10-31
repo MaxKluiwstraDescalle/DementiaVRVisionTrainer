@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.XR;
 
 public class VRLineRaycast : MonoBehaviour
 {
@@ -44,7 +43,10 @@ public class VRLineRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            lineRenderer.SetPosition(1, hit.point); // Adjust line end to hit point
+            if (lineRenderer != null)
+            {
+                lineRenderer.SetPosition(1, hit.point); // Adjust line end to hit point
+            }
 
             // Check what the raycast hits based on tags
             if (hit.collider.CompareTag("MainGameBox"))

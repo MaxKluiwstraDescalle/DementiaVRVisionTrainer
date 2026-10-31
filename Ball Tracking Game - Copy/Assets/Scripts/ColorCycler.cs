@@ -17,10 +17,14 @@ public class ColorCycler : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
-        if (rend != null)
+        if (rend == null)
         {
-            rend.material.color = colors[0];
+            Debug.LogError("Renderer is missing on: " + gameObject.name);
+            enabled = false;
+            return;
         }
+
+        rend.material.color = colors[0];
         InvokeRepeating(nameof(CycleColor), changeInterval, changeInterval);
     }
 
@@ -28,5 +32,10 @@ public class ColorCycler : MonoBehaviour
     {
         currentIndex = (currentIndex + 1) % colors.Length;
         rend.material.color = colors[currentIndex];
+    }
+
+    void OnDestroy()
+    {
+        CancelInvoke(nameof(CycleColor));
     }
 }

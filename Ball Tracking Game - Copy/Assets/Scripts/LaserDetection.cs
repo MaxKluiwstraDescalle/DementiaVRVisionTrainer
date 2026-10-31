@@ -4,18 +4,22 @@ using TMPro; // For TextMeshPro UI
 
 public class LaserDetection : MonoBehaviour
 {
-    public static int score = 0; // ✅ Shared score across both lasers
+    public static int Score { get; private set; }
     public float laserDistance = 2000f; // Max laser distance
     public TextMeshProUGUI scoreText; // UI score display
     public LineRenderer lineRenderer; // Laser renderer
-    public LayerMask detectionLayer = ~0; // Detect all layers for debugging
+    public LayerMask detectionLayer = ~0;
     public float scoreInterval = 0.5f; // Time before scoring again
 
     private Coroutine scoreCoroutine = null; // Track coroutine
 
+    public static void ResetScore()
+    {
+        Score = 0;
+    }
+
     void Start()
     {
-        score = 0;
         if (lineRenderer == null)
         {
             lineRenderer = GetComponent<LineRenderer>();
@@ -65,11 +69,11 @@ public class LaserDetection : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(scoreInterval); // Wait before adding score
-            score++;
+            Score++;
 
             if (scoreText != null)
             {
-                scoreText.text = "Score: " + score;
+                scoreText.text = "Score: " + Score;
             }
         }
     }

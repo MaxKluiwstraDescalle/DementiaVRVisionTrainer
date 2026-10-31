@@ -23,7 +23,11 @@ public class VRPauseManager : MonoBehaviour
 
         if (isPaused)
         {
-            pText.text = "Resume";
+            if (pText != null)
+            {
+                pText.text = "Resume";
+            }
+
             Time.timeScale = 0f;         // Stop game time
             AudioListener.pause = true;   // Pause audio
 
@@ -32,7 +36,11 @@ public class VRPauseManager : MonoBehaviour
         }
         else
         {
-            pText.text = "Pause";
+            if (pText != null)
+            {
+                pText.text = "Pause";
+            }
+
             Time.timeScale = 1f;         // Resume game time
             AudioListener.pause = false;  // Resume audio
 

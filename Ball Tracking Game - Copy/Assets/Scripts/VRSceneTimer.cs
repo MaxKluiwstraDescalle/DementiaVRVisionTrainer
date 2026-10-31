@@ -17,16 +17,14 @@ public class VRSceneTimer : MonoBehaviour
 
     void Start()
     {
-        // Initialize the timer
+        LaserDetection.ResetScore();
         timeLeft = timeLimit;
 
-        // Optional: Check if the timerText reference is assigned
         if (timerText == null)
         {
             Debug.LogError("TimerText reference is missing. Please assign it in the Inspector.");
         }
 
-        // Optional: Check if the gameOverText reference is assigned
         if (gameOverText == null)
         {
             Debug.LogError("GameOverText reference is missing. Please assign it in the Inspector.");
@@ -64,7 +62,7 @@ public class VRSceneTimer : MonoBehaviour
             {
                 gameOverText.text =
                     $"Game Over!\n" +
-                    $"Score: {LaserDetection.score}\n\n" +
+                    $"Score: {LaserDetection.Score}\n\n" +
                     $"Returning to menu in {Mathf.CeilToInt(returnTimer)}";
                 gameOverText.gameObject.SetActive(true);
             }
@@ -104,21 +102,17 @@ public class VRSceneTimer : MonoBehaviour
         AudioListener.pause = true;
 
          returnTimer = returnDelay;
-        // Show "Game Over" message along with the score from LaserDetection
         if (gameOverText != null)
         {
-            timerText.text = "";
-            gameOverText.text = "Game Over!\nScore: " + LaserDetection.score;
+            if (timerText != null)
+            {
+                timerText.text = "";
+            }
+
+            gameOverText.text = "Game Over!\nScore: " + LaserDetection.Score;
             gameOverText.gameObject.SetActive(true);
         }
 
-        // Optional: Wait for a few seconds before returning to the menu
         StartCoroutine(ReturnCountdown());
-    }
-
-    void LoadMenuScene()
-    {
-        // Load the Menu scene (replace "Menu" with the actual name of your menu scene)
-        SceneManager.LoadScene("Menu"); // Replace "Menu" with your actual scene name
     }
 }
