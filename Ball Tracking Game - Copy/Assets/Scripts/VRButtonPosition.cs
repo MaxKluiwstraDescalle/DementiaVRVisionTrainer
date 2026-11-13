@@ -52,7 +52,7 @@ public class VRButtonPosition : MonoBehaviour
         transform.localPosition = Vector3.Lerp(
             transform.localPosition,
             targetPosition,
-            Time.deltaTime * smoothSpeed
+            Time.unscaledDeltaTime * smoothSpeed
         );
     }
 }
