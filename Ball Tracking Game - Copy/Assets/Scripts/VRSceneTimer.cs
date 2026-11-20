@@ -10,10 +10,10 @@ public class VRSceneTimer : MonoBehaviour
     private float timeLeft;       // Remaining time
     private bool gameEnded = false;
 
-    public TextMeshProUGUI timerText; // Reference to the TextMeshPro UI to display the timer
+    private TextMeshProUGUI timerText;
     public float returnDelay = 10f;
     private float returnTimer;
-    public TextMeshProUGUI gameOverText; // Reference to the TextMeshPro UI to display Game Over text
+    private TextMeshProUGUI gameOverText;
 
     void Start()
     {
@@ -22,12 +22,30 @@ public class VRSceneTimer : MonoBehaviour
 
         if (timerText == null)
         {
-            Debug.LogError("TimerText reference is missing. Please assign it in the Inspector.");
+            GameObject timerObject = GameObject.Find("TimerText");
+            if (timerObject != null)
+            {
+                timerText = timerObject.GetComponent<TextMeshProUGUI>();
+            }
         }
 
         if (gameOverText == null)
         {
-            Debug.LogError("GameOverText reference is missing. Please assign it in the Inspector.");
+            GameObject gameOverObject = GameObject.Find("GameOverText");
+            if (gameOverObject != null)
+            {
+                gameOverText = gameOverObject.GetComponent<TextMeshProUGUI>();
+            }
+        }
+
+        if (timerText == null)
+        {
+            Debug.LogError("Could not find a TextMeshProUGUI component on the object named 'TimerText'.");
+        }
+
+        if (gameOverText == null)
+        {
+            Debug.LogError("Could not find a TextMeshProUGUI component on the object named 'GameOverText'.");
         }
 
         // Make the Game Over text hidden initially
@@ -97,7 +115,8 @@ public class VRSceneTimer : MonoBehaviour
         //Debug.Log("Time is up! Showing game over...");
          if (gameEnded) return;
         gameEnded = true;
-        
+        GameObject.Find("PauseButton")?.SetActive(false);
+        GameObject.Find("BackButton")?.SetActive(false);
          Time.timeScale = 0f;
         AudioListener.pause = true;
 
